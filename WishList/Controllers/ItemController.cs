@@ -34,7 +34,7 @@ namespace WishList.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
-        [HttpDelete]
+        
         public IActionResult Delete(int Id)
         {
             var item=_context.Items.Find(Id);
@@ -42,5 +42,6 @@ namespace WishList.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
     }
 }
