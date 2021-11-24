@@ -1,8 +1,13 @@
-﻿@using static WishList.Models.Item
+﻿@model  List<WishList.Models.Item>
 
 @{
     <h1>WhishList</h1>
     <a asp-action="create">Add Item</a>
-    
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>@item.Description <a asp-action="delete" asp-route-id="@item.Id">delete</a></li>
+        }
+    </ul>
 }
     
