@@ -18,7 +18,8 @@ namespace WishList.Controllers
         }
         public IActionResult Index()
         {
-            return View("Index");
+            var model = _context.Items.ToList();
+            return View("Index", model);
         }
 
         [HttpGet]
@@ -30,14 +31,14 @@ namespace WishList.Controllers
         [HttpPost]
         public IActionResult Create(Item item)
         {
-            _context.Add(item);
+            _context.Items.Add(item);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
         
         public IActionResult Delete(int Id)
         {
-            var item=_context.Items.Find(Id);
+            var item=_context.Items.FirstOrDefault(e=>e.Id==Id);
             _context.Remove(item);
             _context.SaveChanges();
             return RedirectToAction("Index");
